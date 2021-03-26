@@ -1,0 +1,82 @@
+.card {
+  width: 80%;
+  height: 100%;
+  align-self: center;
+}
+
+#sidepane {  
+    border-right: 1px solid #5f5c5c;
+}
+
+input:hover {
+  border-color: aqua;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius:1px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#mySearchInput {
+  background-image: url('search-icon.png');
+  background-position: 10px 10px;
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+#mySearchInput:hover {
+  border-color: aqua;
+}
+
+#mySearchInput:active {
+  border-radius: 10px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 1px;
+  width: 100%;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}

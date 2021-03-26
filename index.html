@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chat App</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="">
+    </head>
+    <body>
+        <div class="container card">
+            <div class="container" style="border:2px solid #0d0a0a; width:100%;">
+                <div class="row flex-xl-nowrap">
+                    <div id="sidepane" class="col-2  bd-sidebar">
+                        <div class="row" style="margin-top:5px; padding:5px;">
+                            <div id="search" class="input-group flex-nowrap">
+                                <input type="text" id="mySearchInput" onkeyup="searchFilter()" placeholder="Search"
+                                    title="Type in a name">
+                            </div>
+                        </div>
+                        <div class="row"
+                            style="border-top:1px solid #dbd8d8; overflow: auto; height: 635px; padding-right:2px; padding-top: 3px;">
+                            <ul id="myUL">
+                                <li><a href="#">Abhishek</a></li>
+                                <li><a href="#">Agnes</a></li>
+            
+                                <li><a href="#">Bakul</a></li>
+                                <li><a href="#">Batra</a></li>
+            
+                                <li><a href="#">Chitra</a></li>
+                                <li><a href="#">Chris</a></li>
+                                <li><a href="#">Chindy</a></li>
+            
+                                <li><a href="#">Adele</a></li>
+                                <li><a href="#">Agni</a></li>
+            
+                                <li><a href="#">Billy</a></li>
+                                <li><a href="#">Bob</a></li>
+            
+                                <li><a href="#">Calvin</a></li>
+                                <li><a href="#">Christina</a></li>
+                                <li><a href="#">Cindy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <div class="row" style="padding:10px; border-bottom:2px solid #48ac44; background-color:#3ecf43">
+                            <div class="col">
+                                <h5>Chatting with: Abhishek</h5>
+                            </div>
+                            <div class="col" style="text-align: right;">
+                                <h5>Joined as: Aprameya</h5>
+                            </div>
+                        </div>
+                        <div class="row align-items-end"
+                            style="display:flex; flex-direction:column-reverse; height:80%; overflow: auto; margin:5px;">
+                            <h3 id="chatarea" style="padding:5px; margin: 10px; text-align:right; font-family:Comic Sans MS;"></h3>
+                        </div>
+                        <div class="row border-top" style="padding:5px;">
+                            <form class="form-inline" action="Javascript:messageUpdater()">
+                                <span class="form-group mx-sm-3 mb-2" style="width:1000px; ">
+                                    <label for="message" class="sr-only">Enter Message</label>
+                                    <input type="text" class="form-control" id="message" placeholder="Enter Message..."
+                                        style="width:95.6%; border-radius:20px;">
+                                    <button type="submit" class="btn button-addon2" style="border-radius: 20px;"><img
+                                            src="send-button.png" style="width:25px; height:25px;"></button>
+                                </span>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">
+        function messageUpdater() {
+            var x = document.getElementById("message").value;
+            if(x !== "") {
+                document.getElementById("chatarea").innerHTML += x + "<br>";
+                document.getElementById("message").value = "";
+            }
+        }
+        function searchFilter() {
+                var input, filter, ul, li, a, i, txtValue;
+                input = document.getElementById("mySearchInput");
+                filter = input.value.toUpperCase();
+                ul = document.getElementById("myUL");
+                li = ul.getElementsByTagName("li");
+                for (i = 0; i < li.length; i++) {
+                    a = li[i].getElementsByTagName("a")[0];
+                    txtValue = a.textContent || a.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        li[i].style.display = "";
+                    } else {
+                        li[i].style.display = "none";
+                    }
+                }
+        }
+        // var request = new XMLHttpRequest()
+
+        // // Open a new connection, using the GET request on the URL endpoint
+        // request.open('GET', 'http://34.70.175.225/main', true);
+
+        // request.onload = function () {
+        //     // Begin accessing JSON data here
+        //     var data = JSON.parse(this.response);
+
+        //     if (request.status >= 200 && request.status < 400) {
+        //         data.forEach(movie => {
+        //             console.log(movie.title);
+        //         })
+        //     } else {
+        //         console.log('error');
+        //     }
+        // }
+
+        // // Send request
+        // request.send();
+
+        // Create WebSocket connection.
+            const socket = new WebSocket('ws://34.70.175.225');
+
+        // Connection opened
+        socket.addEventListener('open', function (event) {
+            socket.send('Hello Server!');
+        });
+
+        // Listen for messages
+        socket.addEventListener('message', function (event) {
+            console.log('Message from server ', event.data);
+        });
+    </script>
+</html>
